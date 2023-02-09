@@ -7,18 +7,18 @@ import {readFileSync} from 'fs'
 
 async function run(): Promise<void> {
   try {
-    const globPattern = core.getInput('files-to-check')
+    const included = core.getInput('files-to-check')
+
     const excludePattern = core.getInput('files-to-exclude')
     const ignoreFilename = core.getInput('words-to-ignore-file').trim()
 
-    if (globPattern == null || globPattern === '') {
-      core.setFailed(
-        `Missing configuration field "files-to-check". Please edit your github action workflow.`
+    if (included == null || included === '') {
+      core.info(
+        `No files passed to check.`
       )
       return
     }
 
-    const included = await glob.create(globPattern)
     const isExcluded = await excluder(excludePattern)
 
     const spell = await initialise()
@@ -64,7 +64,7 @@ async function run(): Promise<void> {
     let hasMisspelled = false
     let checkedFiles = false
 
-    for await (const file of included.globGenerator()) {
+    for await (const file of included.split('|')) {
       if (isExcluded(file)) {
         core.info(
           `Ignoring ${file} because it is excluded via 'files-to-exclude'.`
@@ -88,7 +88,7 @@ async function run(): Promise<void> {
       core.setFailed('Misspelled word(s)')
     } else if (!checkedFiles) {
       core.setFailed(
-        `Couldn't find any files matching the glob pattern ${globPattern}`
+        `Couldn't find any files matching the list ${included}`
       )
     }
   } catch (error) {

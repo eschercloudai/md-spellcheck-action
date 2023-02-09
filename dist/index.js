@@ -124,14 +124,13 @@ function run() {
     var e_1, _a, e_2, _b;
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const globPattern = core.getInput('files-to-check');
+            const included = core.getInput('files-to-check');
             const excludePattern = core.getInput('files-to-exclude');
             const ignoreFilename = core.getInput('words-to-ignore-file').trim();
-            if (globPattern == null || globPattern === '') {
-                core.setFailed(`Missing configuration field "files-to-check". Please edit your github action workflow.`);
+            if (included == null || included === '') {
+                core.info(`No files passed to check.`);
                 return;
             }
-            const included = yield glob.create(globPattern);
             const isExcluded = yield excluder(excludePattern);
             const spell = yield (0, spellcheck_1.initialise)();
             const ignores = [];
@@ -158,7 +157,7 @@ function run() {
             let hasMisspelled = false;
             let checkedFiles = false;
             try {
-                for (var _c = __asyncValues(included.globGenerator()), _d; _d = yield _c.next(), !_d.done;) {
+                for (var _c = __asyncValues(included.split('|')), _d; _d = yield _c.next(), !_d.done;) {
                     const file = _d.value;
                     if (isExcluded(file)) {
                         core.info(`Ignoring ${file} because it is excluded via 'files-to-exclude'.`);
@@ -194,7 +193,7 @@ function run() {
                 core.setFailed('Misspelled word(s)');
             }
             else if (!checkedFiles) {
-                core.setFailed(`Couldn't find any files matching the glob pattern ${globPattern}`);
+                core.setFailed(`Couldn't find any files matching the list ${included}`);
             }
         }
         catch (error) {
