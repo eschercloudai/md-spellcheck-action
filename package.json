@@ -9,7 +9,7 @@
     "format": "prettier --write '**/*.ts'",
     "format-check": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
-    "package": "ncc build --source-map --license licenses.txt && cp ./node_modules/dictionary-en/index.dic ./dist/index.dic && cp ./node_modules/dictionary-en/index.aff ./dist/index.aff",
+    "package": "ncc build --source-map --license licenses.txt && cp ./node_modules/dictionary-en-gb/index.dic ./dist/index.dic && cp ./node_modules/dictionary-en-gb/index.aff ./dist/index.aff",
     "test": "jest",
     "all": "yarn build && yarn format && yarn lint && yarn package && yarn test"
   },
@@ -33,6 +33,7 @@
     "@yozora/tokenizer-inline-math": "^2.0.2-alpha.0",
     "@yozora/tokenizer-math": "^2.0.2-alpha.0",
     "dictionary-en": "^3.2.0",
+    "dictionary-en-gb": "^2.4.0",
     "fast-check": "^3.1.1",
     "hunspell-asm": "^4.0.2"
   },

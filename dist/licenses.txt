@@ -919,9 +919,9 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-dictionary-en
+dictionary-en-gb
 (MIT AND BSD)
-en_US Hunspell Dictionary
+en_GB-ise Hunspell Dictionary
 Version 2020.12.07
 Mon Dec 7 20:14:35 2020 -0500 [5ef55f9]
 http://wordlist.sourceforge.net
@@ -1266,8 +1266,8 @@ and Australian word list.  It is under the following copyright:
   OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
   SUCH DAMAGE.
 
-Build Date: Mon Dec  7 20:19:27 EST 2020
-Wordlist Command: mk-list --accents=strip en_US 60
+Build Date: Mon Dec  7 20:19:30 EST 2020
+Wordlist Command: mk-list --accents=strip en_GB-ise 60
 
 
 emscripten-wasm-loader

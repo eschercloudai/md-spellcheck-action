@@ -396,7 +396,7 @@ exports.splitWords = exports.initialise = exports.INLINE_TYPES = exports.SKIP_TY
 const parser_gfm_ex_1 = __nccwpck_require__(1977);
 const tokenizer_math_1 = __nccwpck_require__(6543);
 const tokenizer_inline_math_1 = __nccwpck_require__(5280);
-const dictionary_en_1 = __importDefault(__nccwpck_require__(1278));
+const dictionary_en_gb_1 = __importDefault(__nccwpck_require__(2729));
 const hunspell_asm_1 = __nccwpck_require__(4517);
 const point = __importStar(__nccwpck_require__(3767));
 const positions = __importStar(__nccwpck_require__(2325));
@@ -576,7 +576,7 @@ function getDictionaryEN() {
     return __awaiter(this, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
             try {
-                (0, dictionary_en_1.default)((error, dicts) => (error ? reject(error) : resolve(dicts)));
+                (0, dictionary_en_gb_1.default)((error, dicts) => (error ? reject(error) : resolve(dicts)));
             }
             catch (e) {
                 reject(e);
@@ -15233,7 +15233,7 @@ var isArray = Array.isArray || function (xs) {
 
 /***/ }),
 
-/***/ 1278:
+/***/ 2729:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const fs = __nccwpck_require__(7147)
@@ -16984,32 +16984,6 @@ while (i--) {
 
 /***/ }),
 
-/***/ 5388:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-/*!
- * normalize-path <https://github.com/jonschlinkert/normalize-path>
- *
- * Copyright (c) 2014-2017, Jon Schlinkert.
- * Released under the MIT License.
- */
-
-var removeTrailingSeparator = __nccwpck_require__(9499);
-
-module.exports = function normalizePath(str, stripTrailing) {
-  if (typeof str !== 'string') {
-    throw new TypeError('expected a string');
-  }
-  str = str.replace(/[\\\/]+/g, '/');
-  if (stripTrailing !== false) {
-    str = removeTrailingSeparator(str);
-  }
-  return str;
-};
-
-
-/***/ }),
-
 /***/ 9499:
 /***/ ((module) => {
 
@@ -17327,11 +17301,37 @@ exports.debug = debug; // for test
 
 
 
-var normalizePath = __nccwpck_require__(5388);
+var normalizePath = __nccwpck_require__(7394);
 
 module.exports = function unixify(filepath, stripTrailing) {
   filepath = normalizePath(filepath, stripTrailing);
   return filepath.replace(/^([a-zA-Z]+:|\.\/)/, '');
+};
+
+
+/***/ }),
+
+/***/ 7394:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+/*!
+ * normalize-path <https://github.com/jonschlinkert/normalize-path>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
+var removeTrailingSeparator = __nccwpck_require__(9499);
+
+module.exports = function normalizePath(str, stripTrailing) {
+  if (typeof str !== 'string') {
+    throw new TypeError('expected a string');
+  }
+  str = str.replace(/[\\\/]+/g, '/');
+  if (stripTrailing !== false) {
+    str = removeTrailingSeparator(str);
+  }
+  return str;
 };
 
 

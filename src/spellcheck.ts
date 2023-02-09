@@ -3,7 +3,7 @@ import type {Literal, Node, Parent, Point, Position, Link} from '@yozora/ast'
 import {GfmExParser} from '@yozora/parser-gfm-ex'
 import {MathTokenizer} from '@yozora/tokenizer-math'
 import {InlineMathTokenizer} from '@yozora/tokenizer-inline-math'
-import dictionaryEn from 'dictionary-en'
+import dictionaryEnGb from 'dictionary-en-gb'
 import {loadModule} from 'hunspell-asm'
 
 import * as point from './point'
@@ -246,7 +246,7 @@ export function* splitWords(str: string): Iterable<Word> {
 async function getDictionaryEN(): Promise<{aff: Buffer; dic: Buffer}> {
   return new Promise((resolve, reject) => {
     try {
-      dictionaryEn((error, dicts) => (error ? reject(error) : resolve(dicts)))
+      dictionaryEnGb((error, dicts) => (error ? reject(error) : resolve(dicts)))
     } catch (e) {
       reject(e)
     }
